@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/")
+@RequestMapping(path = "/SongArtist")
 public class SongArtistController {
 
     private final ArtistService artistService;
@@ -32,13 +32,13 @@ public class SongArtistController {
         this.songService = songService;
     }
 
-    @GetMapping("/getArtists")
-    public List<Artist> getArtist(@RequestParam(required=true) String artistName) {
+    @GetMapping("/getArtistsByName")
+    public List<Artist> getArtist(@RequestParam String artistName) {
         return artistService.getArtists(artistName);
     }
 
-    @GetMapping("/getSongsByArtistId")
-    public List<Song> getSongsByArtistId(@RequestParam(required = true) int artistId) {
+    @GetMapping("/getSongsByArtist")
+    public List<Song> getSongsByArtistId(@RequestParam int artistId) {
         return songService.getSongsByArtistId(artistId);
     }
 

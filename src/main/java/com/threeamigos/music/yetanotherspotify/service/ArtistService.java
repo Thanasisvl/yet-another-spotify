@@ -26,11 +26,13 @@ public class ArtistService {
             if (artist.getArtistName().equals(artistName)) {
                 log.info("Artist with artistName: " + artistName + " found.");
                 listWithArtistsToServe.add(artist);
-                return listWithArtistsToServe;
             }
         }
-        log.info("Artist with artistName: " + artistName + " was not found.");
-        return null;
+        if (listWithArtistsToServe.isEmpty()) {
+            log.info("Artist with artistName: " + artistName + " was not found.");
+            throw new IllegalStateException("The artist does not exist.");
+        }
+        return listWithArtistsToServe;
     }
 
 }
